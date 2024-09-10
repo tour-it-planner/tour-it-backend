@@ -21,10 +21,10 @@ const indexRoutes = require("./routes/index.routes");
 app.use("/api", indexRoutes);
 
 const iteneraryRouter = require("./routes/itinerary.routes");
-app.use("/api", isAuthenticated, iteneraryRouter);
+app.use("/api", iteneraryRouter);
 
 const destinationRouter = require("./routes/destination.routes");
-app.use("/api", isAuthenticated, destinationRouter)
+app.use("/api", destinationRouter)
 
 const authRoutes = require("./routes/auth.routes");
 app.use("/auth", authRoutes);

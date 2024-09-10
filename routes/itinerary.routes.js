@@ -46,7 +46,7 @@ router.get("/itineraries/:itineraryId", (req, res, next) => {
 
 
 // PUT  /api/itineraries/:itineraryId  -  Updates a specific itinerary by id
-router.put("/itineraries/:itineraryId", (req, res, next) => {
+router.put("/itineraries/:itineraryId", isAuthenticated, (req, res, next) => {
     const { itineraryId } = req.params;
 
     if (!mongoose.Types.ObjectId.isValid(itineraryId)) {
@@ -61,7 +61,7 @@ router.put("/itineraries/:itineraryId", (req, res, next) => {
 
 
 // DELETE  /api/itineraries/:itineraryId  -  Deletes a specific itinerary by id
-router.delete("/itineraries/:itineraryId", (req, res, next) => {
+router.delete("/itineraries/:itineraryId", isAuthenticated, (req, res, next) => {
     const { itineraryId } = req.params;
 
     if (!mongoose.Types.ObjectId.isValid(itineraryId)) {
