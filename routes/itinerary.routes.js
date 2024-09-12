@@ -25,7 +25,7 @@ router.get("/itineraries", (req, res, next) => {
     Itinerary.find()
         .populate("destinations")
         .then((allItineraries) => res.json(allItineraries))
-        .catch((err) => res.json(err));
+        .catch((err) => res.status(500).json(err));
 });
 
 
@@ -41,7 +41,7 @@ router.get("/itineraries/:itineraryId", (req, res, next) => {
     Itinerary.findById(itineraryId)
         .populate("destinations")
         .then((itinerary) => res.status(201).json(itinerary))
-        .catch((error) => res.json(error));
+        .catch((error) => res.status(500).json(error));
 });
 
 
@@ -56,7 +56,7 @@ router.put("/itineraries/:itineraryId", isAuthenticated, (req, res, next) => {
 
     Itinerary.findByIdAndUpdate(itineraryId, req.body, { new: true })
         .then((updatedItinerary) => res.json(updatedItinerary))
-        .catch((error) => res.json(error));
+        .catch((error) => res.status(500).json(error));
 });
 
 
@@ -75,7 +75,7 @@ router.delete("/itineraries/:itineraryId", isAuthenticated, (req, res, next) => 
                 message: `Itinerary with ${itineraryId} was removed successfully.`,
             })
         )
-        .catch((error) => res.json(error));
+        .catch((error) => res.status(500).json(error));
 });
 
 module.exports = router;
