@@ -13,14 +13,14 @@ router.post("/destinations", isAuthenticated, (req, res, next) => {
 
     Destination.create({ location, description, imageUrl })
         .then((response) => res.status(201).json(response))
-        .catch((error) => res.json(error));
+        .catch((error) => res.status(500).json(error));
 })
 
 //Get /api/destinations - all destinations
 router.get("/destinations", (req, res, next) => {
     Destination.find()
         .then((allDestinations) => res.json(allDestinations))
-        .catch((error) => res.json(error));
+        .catch((error) => res.status(500).json(error));
 })
 
 // GET /api/destinations/:destinationId
@@ -43,7 +43,7 @@ router.get("/destinations/:destinationId", isAuthenticated, (req, res, next) => 
             destinationDetails.itineraries = itinerariesFromDB;
             res.status(200).json(destinationDetails);
         })
-        .catch((error) => res.json(error));
+        .catch((error) => res.status(500).json(error));
 });
 
 
