@@ -9,9 +9,9 @@ const Destination = require("../models/Destination.model");
 
 //  POST /api/itineraries  -  Creates a new itenerary 
 router.post("/itineraries", isAuthenticated, (req, res, next) => {
-    const { title, description , destinations } = req.body;
+    const { title, description, details, destinations } = req.body;
 
-    Itinerary.create({ title, description, destinations })
+    Itinerary.create({ title, description, details, destinations })
         .then((response) => res.status(201).json(response))
         .catch((err) => {
             console.log("Error while creating the itinerary ", err);

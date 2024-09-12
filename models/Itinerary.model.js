@@ -8,10 +8,16 @@ const itinerarySchema = new Schema({
     description: {
         type: String,
     },
+    details: [String],
+
     destinations: [{
         type: Schema.Types.ObjectId,
         ref: "Destination"
-    }]
+    }],
+    createdAt: {
+        type: Date,
+        default: Date.now
+    }
 })
 
 
